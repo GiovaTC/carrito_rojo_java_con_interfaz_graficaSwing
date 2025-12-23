@@ -12,8 +12,14 @@ public class RedCarGame extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        GamePanel gamePanel = new GamePanel();  
+        GamePanel gamePanel = new GamePanel();
+        add(gamePanel);
+        setVisible(true);
     }
-}
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(RedCarGame::new);
+    }
+}   
 
 class GamePanel extends JPanel  {}
