@@ -70,12 +70,31 @@ class GamePanel extends JPanel implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+
+        switch (key) {
+            case KeyEvent.VK_UP -> {
+                if (carY - SPEED >= 50) carY -= SPEED;
+            }
+            case KeyEvent.VK_DOWN -> {
+                if (carY + SPEED + 40 <= 500) carY += SPEED;
+            }
+            case KeyEvent.VK_LEFT -> {
+                if (carX - SPEED >= 100) carX -= SPEED;
+            }
+            case KeyEvent.VK_RIGHT -> {
+                if (carX + SPEED + 60 <= 700) carX += SPEED;
+            }
+        }
+
+        repaint();
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {}
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 }
