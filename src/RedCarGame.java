@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class RedCarGame extends JFrame {
 
@@ -30,14 +33,50 @@ class GamePanel extends JPanel implements KeyListener {
     private final int CAR_HEIGHT = 40;
     private final int SPEED = 10;
 
+    private int score = 0;
+    private boolean gameOver = false;
+
+    private final List<Rectangle> obstacles = new ArrayList<>();
+    private final Random random = new Random(); 
+
     public GamePanel() {
         setBackground(Color.WHITE);
         setFocusable(true);
-        addKeyListener(this);
+        addKeyListener(this);   
+        
+        createObstacles();
 
-        // timer para refrescar la pantalla .
-        Timer timer = new Timer(25, e -> repaint());
+        // timer principal del juego .
+        Timer timer = new Timer(30, e -> gameLoop());
         timer.start();
+
+        // timer del marcador .
+        Timer scoreTimer = new Timer(2000, e -> {
+            if (!gameOver) score += 10; {}
+        });
+        scoreTimer.start();
+    }
+
+    private void createObstacles() {
+        obstacles.clear();
+        for (int i = 0; i < 5; i++) {
+            int x = 120 + random.nextInt(500);
+            int y = 60 + random.nextInt(380);
+            obstacles.add(new Rectangle(x, y, 50, 30)); 
+        }
+    }
+
+    private void gameLoop() {
+        if (!gameOver) moveObstacles();
+        checkCollision();
+        repaint();
+    }
+
+    private void checkCollision() {
+    }
+
+    private void moveObstacles() {
+        
     }
 
     @Override
