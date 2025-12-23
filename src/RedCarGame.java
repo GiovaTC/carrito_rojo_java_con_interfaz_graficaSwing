@@ -20,6 +20,62 @@ public class RedCarGame extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(RedCarGame::new);
     }
-}   
+}
 
-class GamePanel extends JPanel  {}
+class GamePanel extends JPanel implements KeyListener {
+
+    private int carX = 350;
+    private int carY = 250;
+    private final int CAR_WIDTH = 60;
+    private final int CAR_HEIGHT = 40;
+    private final int SPEED = 10;
+
+    public GamePanel() {
+        setBackground(Color.WHITE);
+        setFocusable(true);
+        addKeyListener(this);
+
+        // timer para refrescar la pantalla .
+        Timer timer = new Timer(25, e -> repaint());
+        timer.start();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        // dibujar pista simple .
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(100, 50, 600, 450);
+
+        // lineas de carretera .
+        g.setColor(Color.WHITE);
+        for (int i = 60; i < 500; i += 40) {
+            g.fillRect(390, i, 20, 20);
+        }
+
+        // dibujar carrito rojo .
+        g.setColor(Color.RED);
+        g.fillRoundRect(carX, carY, CAR_WIDTH, CAR_HEIGHT, 10, 10);
+
+        // detalles del carro .
+        g.setColor(Color.BLACK);
+        g.fillOval(carX + 5, carY + CAR_HEIGHT - 5, 15, 15);
+        g.fillOval(carX + CAR_WIDTH - 20, carY + CAR_HEIGHT - 5, 15, 15);
+
+        // titulo
+        g.setFont(new Font("Arial", Font.BOLD, 18));
+        g.setColor(Color.BLUE);
+        g.drawString("Juego del Carrito Rojo - Usa las flechas para moverte", 180, 25);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {}
+
+    @Override
+    public void keyReleased(KeyEvent e) {}
+}
