@@ -91,34 +91,59 @@ class GamePanel extends JPanel implements KeyListener {
             }
         }
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // dibujar pista simple .
+        // pista .
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(100, 50, 600, 450);
 
-        // lineas de carretera .
+        // lineas blancas .
         g.setColor(Color.WHITE);
         for (int i = 60; i < 500; i += 40) {
             g.fillRect(390, i, 20, 20);
         }
 
-        // dibujar carrito rojo .
+        // obstaculos .
+        g.setColor(Color.BLACK);
+        for (Rectangle r : obstacles) {
+            g.fillRect(r.x, r.y, r.width, r.height);
+        }
+
+        // carro rojo.
         g.setColor(Color.RED);
         g.fillRoundRect(carX, carY, CAR_WIDTH, CAR_HEIGHT, 10, 10);
 
-        // detalles del carro .
+        // Ruedas
         g.setColor(Color.BLACK);
         g.fillOval(carX + 5, carY + CAR_HEIGHT - 5, 15, 15);
-        g.fillOval(carX + CAR_WIDTH - 20, carY + CAR_HEIGHT - 5, 15, 15);
+        g.fillOval(carX + CAR_WIDTH - 20,carY + CAR_HEIGHT - 5, 15, 15);
 
-        // titulo
-        g.setFont(new Font("Arial", Font.BOLD, 18));
+        // marcador .
         g.setColor(Color.BLUE);
-        g.drawString("Juego del Carrito Rojo - Usa las flechas para moverte", 180, 25);
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString("PUNTOS: " + score, 20, 30);
+
+        // Título
+        g.drawString("Juego del Carrito Rojo | Evita los obstáculos", 230, 30);
+
+        // Game Over
+        if (gameOver) {
+            g.setColor(new Color(0, 0, 0, 180));
+            g.fillRect(0, 0, getWidth(), getHeight());
+
+            g.setColor(Color.RED);
+            g.setFont(new Font("Arial", Font.BOLD, 40));
+            g.drawString("GAME OVER", 290, 250);
+
+            g.setFont(new Font("Arial", Font.BOLD, 25));
+            g.drawString("Puntaje final: " + score, 310, 300);
+
+            g.setFont(new Font("Arial", Font.PLAIN, 20));
+            g.drawString("Presiona ENTER para reiniciar", 270, 350);
+        }
     }
 
     @Override
