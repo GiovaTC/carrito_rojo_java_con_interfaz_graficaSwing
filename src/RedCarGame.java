@@ -146,8 +146,16 @@ class GamePanel extends JPanel implements KeyListener {
         }
     }
 
+    // ----------------- CONTROL DEL CARRO -----------------
     @Override
     public void keyPressed(KeyEvent e) {
+        if (gameOver && e.getKeyCode() == KeyEvent.VK_ENTER) {
+            restartGame();
+            return;
+        }
+
+        if (gameOver) return;
+
         int key = e.getKeyCode();
 
         switch (key) {
@@ -168,10 +176,16 @@ class GamePanel extends JPanel implements KeyListener {
         repaint();
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {}
+    private void restartGame() {
+        carX = 350;
+        carY = 400;
+        score = 0;
+        gameOver = false;
+        createObstacles();
+    }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-    }
+    public void keyReleased(KeyEvent e) {}
+    @Override
+    public void keyTyped(KeyEvent e) {}
 }
