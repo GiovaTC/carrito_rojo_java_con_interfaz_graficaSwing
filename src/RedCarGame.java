@@ -72,13 +72,26 @@ class GamePanel extends JPanel implements KeyListener {
         repaint();
     }
 
-    private void checkCollision() {
-    }
-
     private void moveObstacles() {
-        
+        for (Rectangle r : obstacles) {
+            r.y += 3;
+            if (r.y > 500) {
+                r.y = 60;
+                r.x = 120 + random.nextInt(500);
+            }
+        }
     }
 
+    private void checkCollision() {
+
+        Rectangle car = new Rectangle(carX, carY, CAR_WIDTH, CAR_HEIGHT);
+        for (Rectangle r : obstacles) {
+            if (car.intersects(r)) {
+                gameOver = true;
+            }
+        }
+    }
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
