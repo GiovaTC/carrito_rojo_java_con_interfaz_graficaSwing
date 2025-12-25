@@ -1,7 +1,9 @@
 # carrito_rojo_java_con_interfaz_graficaSwing :. 
 ## 🏎️ Juego del Carrito Rojo en Java (Swing)
 
-<img width="260" height="120" alt="image" src="https://github.com/user-attachments/assets/bdc48074-b864-4610-9d34-be192e2cd4e3" />  
+<img width="260" height="120" alt="image" src="https://github.com/user-attachments/assets/bdc48074-b864-4610-9d34-be192e2cd4e3" />          
+
+<img width="2551" height="1038" alt="image" src="https://github.com/user-attachments/assets/ce40f5d6-1f85-4d3f-bee7-7618eaacdc5b" />    
 
 ## Solución completa, profesional y lista para ejecutar en IntelliJ IDEA, para el juego del carrito rojo en Java con interfaz gráfica (Swing).
 ## Es un minijuego donde el usuario controla un carro rojo moviéndose en pantalla mediante las flechas del teclado. Incluye animación, colisiones con bordes y estructura limpia.
